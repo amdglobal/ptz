@@ -2,11 +2,11 @@
   "targets": [
     {
       "target_name": "ptz",
-      "sources": [ "lib/ptz.cc" ],
-      "libraries": [
-        "-luvc"
-      ],
+      "sources": ["lib/ptz.cpp"],
+      "libraries": ["-luvc"],
+      "cflags": ["-std=c++17 -g"],
       "include_dirs": [
+        "<!(node -e \"require('nan')\")",
         "/usr/include/",
         "/usr/include/libusb-1.0",
         "/usr/local/include",
