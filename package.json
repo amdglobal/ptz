@@ -1,6 +1,6 @@
 {
   "name": "@amdglobal/ptz",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "ptz",
   "main": "lib/ptz.js",
   "gypfile": true,
