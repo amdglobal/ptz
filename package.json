@@ -1,6 +1,6 @@
 {
     "name": "ptz",
-    "version": "0.0.7",
+    "version": "0.1.0",
     "description": "ptz",
     "main": "lib/ptz.js",
     "gypfile": true,
