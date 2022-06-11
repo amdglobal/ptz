@@ -1,52 +1,52 @@
 {
-    "name": "ptz",
-    "version": "0.1.0",
-    "description": "ptz",
-    "main": "lib/ptz.js",
-    "gypfile": true,
-    "scripts": {
-        "test": "gulp test"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/ghafran/ptz.git"
-    },
-    "author": "Ghafran Abbas (https://github.com/ghafran)",
-    "license": "ISC",
-    "keywords": [
-        "ptz",
-        "pan",
-        "tilt",
-        "zoom",
-        "fecc",
-        "camera",
-        "uvc",
-        "visca"
-    ],
-    "bugs": {
-        "url": "https://github.com/ghafran/ptz/issues"
-    },
-    "homepage": "https://github.com/ghafran/ptz#readme",
-    "directories": {
-        "doc": "docs",
-        "test": "test"
-    },
-    "dependencies": {
-        "bluebird": "^3.5.0",
-        "lodash": "^4.17.4"
-    },
-    "devDependencies": {
-        "chai": "^4.1.2",
-        "chalk": "^2.1.0",
-        "chance": "^1.0.6",
-        "gulp": "^3.9.1",
-        "gulp-jshint": "^2.0.4",
-        "gulp-load-plugins": "^1.5.0",
-        "gulp-mocha": "^4.3.1",
-        "gulp-shell": "^0.6.3",
-        "jshint": "^2.9.4",
-        "jshint-stylish": "^2.2.1",
-        "nan": "^2.16.0",
-        "run-sequence": "^2.1.0"
-    }
+  "name": "@amdglobal/ptz",
+  "version": "0.1.0",
+  "description": "ptz",
+  "main": "lib/ptz.js",
+  "gypfile": true,
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghafran/ptz.git"
+  },
+  "author": "Ghafran Abbas (https://github.com/ghafran)",
+  "license": "ISC",
+  "keywords": [
+    "ptz",
+    "pan",
+    "tilt",
+    "zoom",
+    "fecc",
+    "camera",
+    "uvc",
+    "visca"
+  ],
+  "bugs": {
+    "url": "https://github.com/ghafran/ptz/issues"
+  },
+  "homepage": "https://github.com/ghafran/ptz#readme",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chalk": "^2.1.0",
+    "chance": "^1.0.6",
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-mocha": "^4.3.1",
+    "gulp-shell": "^0.6.3",
+    "jshint": "^2.9.4",
+    "jshint-stylish": "^2.2.1",
+    "nan": "^2.16.0",
+    "run-sequence": "^2.1.0"
+  }
 }
