@@ -46,7 +46,6 @@ void trySetting(const Local<Object>& target, const std::string& key, const char*
         Nan::Set(target, v8Key, Nan::Null());
     }
 }
-
 void openDevice(UVCDevice* uvcDevice) {
     // initalize uvc
     uvcDevice->result = uvc_init(&uvcDevice->ctx, NULL);
@@ -76,7 +75,6 @@ void openDevice(UVCDevice* uvcDevice) {
         uvcDevice->error = error.c_str();
     }
 }
-
 void closeDevice(UVCDevice* uvcDevice) {
     uvc_close(uvcDevice->devicehandle);
     uvc_unref_device(uvcDevice->device);
@@ -92,7 +90,6 @@ struct DeviceCapability {
     int absolute_roll;
     int relative_roll;
 };
-
 struct DeviceCapability getDeviceCapability(struct UVCDevice* uvcDevice) {
     struct DeviceCapability deviceCapability;
     enum uvc_req_code       requestCode;
@@ -144,7 +141,6 @@ struct AbsoluteZoomInfo {
     uvc_error_t result;
     const char* error;
 };
-
 void getAbsoluteZoomInfo(struct UVCDevice* uvcDevice, struct AbsoluteZoomInfo* absoluteZoomInfo) {
     enum uvc_req_code requestCode;
 
@@ -199,7 +195,6 @@ struct AbsoluteZoom {
     uvc_error_t result;
     const char* error;
 };
-
 void setAbsoluteZoom(struct UVCDevice* uvcDevice, struct AbsoluteZoom* absoluteZoom) {
     absoluteZoom->result = uvc_set_zoom_abs(uvcDevice->devicehandle, absoluteZoom->zoom);
     if (absoluteZoom->result != 0) {
@@ -221,7 +216,6 @@ struct RelativeZoomInfo {
     uvc_error_t result;
     const char* error;
 };
-
 void getRelativeZoomInfo(struct UVCDevice* uvcDevice, struct RelativeZoomInfo* relativeZoomInfo) {
     enum uvc_req_code requestCode;
 
@@ -292,7 +286,6 @@ struct RelativeZoom {
     uvc_error_t result;
     const char* error;
 };
-
 void setRelativeZoom(struct UVCDevice* uvcDevice, struct RelativeZoom* relativeZoom) {
     relativeZoom->result = uvc_set_zoom_rel(
         uvcDevice->devicehandle, relativeZoom->direction, 1, relativeZoom->speed);
@@ -318,7 +311,6 @@ struct AbsolutePanTiltInfo {
     uvc_error_t result;
     const char* error;
 };
-
 void getAbsolutePanTiltInfo(struct UVCDevice*           uvcDevice,
                             struct AbsolutePanTiltInfo* absolutePanTiltInfo) {
     enum uvc_req_code requestCode;
@@ -385,7 +377,6 @@ struct AbsolutePanTilt {
     uvc_error_t result;
     const char* error;
 };
-
 void setAbsolutePanTilt(struct UVCDevice* uvcDevice, struct AbsolutePanTilt* absolutePanTilt) {
     absolutePanTilt->result = uvc_set_pantilt_abs(
         uvcDevice->devicehandle, absolutePanTilt->pan, absolutePanTilt->tilt);
@@ -413,7 +404,6 @@ struct RelativePanTiltInfo {
     uvc_error_t result;
     const char* error;
 };
-
 void getRelativePanTiltInfo(struct UVCDevice*           uvcDevice,
                             struct RelativePanTiltInfo* relativePanTiltInfo) {
     enum uvc_req_code requestCode;
@@ -492,7 +482,6 @@ struct RelativePanTilt {
     uvc_error_t result;
     const char* error;
 };
-
 void setRelativePanTilt(struct UVCDevice* uvcDevice, struct RelativePanTilt* relativePanTilt) {
     relativePanTilt->result = uvc_set_pantilt_rel(uvcDevice->devicehandle,
                                                   relativePanTilt->pan_direction,
@@ -631,7 +620,6 @@ NAN_METHOD(getCapabilities) {
     closeDevice(&uvcDevice);
 
     // trigger callback
-    Local<Value> argv[2] = {Nan::Undefined(), jsDevice};
     info.GetReturnValue().Set(jsDevice);
 }
 NAN_METHOD(getAbsoluteZoom) {
@@ -649,8 +637,6 @@ NAN_METHOD(getAbsoluteZoom) {
     // open device
     openDevice(&uvcDevice);
     if (uvcDevice.result != 0) {
-        Local<Value> argv[2] = {Nan::New<String>(uvcDevice.error).ToLocalChecked(),
-                                Nan::Undefined()};
         Nan::ThrowError(uvcDevice.error);
         return;
     }
@@ -686,7 +672,6 @@ NAN_METHOD(getAbsoluteZoom) {
     closeDevice(&uvcDevice);
 
     // trigger callback
-    Local<Value> argv[2] = {Nan::Undefined(), jsDevice};
     info.GetReturnValue().Set(jsDevice);
 }
 NAN_METHOD(absoluteZoom) {
@@ -1054,7 +1039,7 @@ NAN_METHOD(relativePanTilt) {
     info.GetReturnValue().Set(Nan::Undefined());
 }
 
-NAN_MODULE_INIT(InitAll) {
+NAN_MODULE_INIT(Init) {
     NAN_EXPORT(target, listDevices);
     NAN_EXPORT(target, getCapabilities);
     NAN_EXPORT(target, getAbsoluteZoom);
@@ -1065,18 +1050,7 @@ NAN_MODULE_INIT(InitAll) {
     NAN_EXPORT(target, absolutePanTilt);
     NAN_EXPORT(target, getRelativePanTilt);
     NAN_EXPORT(target, relativePanTilt);
-
-    // SetMethod(target, "listDevices", listDevices);
-    // SetMethod(target, "getCapabilities", getCapabilities);
-    // SetMethod(target, "getAbsoluteZoom", getAbsoluteZoom);
-    // SetMethod(target, "absoluteZoom", absoluteZoom);
-    // SetMethod(target, "getRelativeZoom", getRelativeZoom);
-    // SetMethod(target, "relativeZoom", relativeZoom);
-    // SetMethod(target, "getAbsolutePanTilt", getAbsolutePanTilt);
-    // SetMethod(target, "absolutePanTilt", absolutePanTilt);
-    // SetMethod(target, "getRelativePanTilt", getRelativePanTilt);
-    // SetMethod(target, "relativePanTilt", relativePanTilt);
 }
 
-NODE_MODULE(ptz, InitAll);
+NODE_MODULE(ptz, (node::addon_register_func)Init);
 }  // namespace ptz

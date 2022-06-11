@@ -32,21 +32,6 @@
     "test": "test"
   },
   "dependencies": {
-    "bluebird": "^3.5.0",
-    "nan": "^2.16.0",
-    "lodash": "^4.17.4"
-  },
-  "devDependencies": {
-    "chai": "^4.1.2",
-    "chalk": "^2.1.0",
-    "chance": "^1.0.6",
-    "gulp": "^3.9.1",
-    "gulp-jshint": "^2.0.4",
-    "gulp-load-plugins": "^1.5.0",
-    "gulp-mocha": "^4.3.1",
-    "gulp-shell": "^0.6.3",
-    "jshint": "^2.9.4",
-    "jshint-stylish": "^2.2.1",
-    "run-sequence": "^2.1.0"
+    "nan": "^2.16.0"
   }
 }

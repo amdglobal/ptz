@@ -1,28 +1,23 @@
-'use strict';
+"use strict";
 
-var expect = require('chai').expect,
-    ptz = require('../lib/ptz');
+const ptz = require("../lib/ptz");
 
-describe('ptz', () => {
+describe("ptz", () => {
+  it("listDevices promise", () => {
+    const devices = ptz.listDevices();
+    expect(devices).to.exist;
+    expect(devices).toBe.instanceof(Array);
+  });
 
-    it('listDevices promise', () => {
-        return ptz.listDevices().then((devices) => {
-            expect(devices).to.exist;
-            expect(devices).to.be.instanceof(Array);
-        });
-    });
+  it("listDevices callback", (done) => {
+    const devices = ptz.listDevices();
+    expect(err).toBeUndefined();
+    expect(devices).not.toBeUndefined();
+    expect(devices).toBe.instanceof(Array);
+  });
 
-    it('listDevices callback', (done) => {
-        ptz.listDevices((err, devices) => {
-            expect(err).to.not.exist;
-            expect(devices).to.exist;
-            expect(devices).to.be.instanceof(Array);
-            done();
-        });
-    });
-
-    it('getCamera', () => {
-        var camera = ptz.getCamera();
-        expect(camera).to.exist;
-    });
+  it("getCamera", () => {
+    var camera = ptz.getCamera();
+    expect(camera).not.toBeUndefined();
+  });
 });
